@@ -8,97 +8,46 @@ namespace UnitTestProject2
     public class UnitTest1
     {
         [TestMethod]
-        public void TestVersionSC1()
+        public void TestVersion()
         {
             ///Verifying -v version value
-            String actualversion, expectedversion;
+            String actualversion = null;
+            string[] strArr = { "-v", "--v", "/v","--version" ,"t"};
             clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualversion = objclsFuncExecution.funcexecution("-v", "c:/test.txt");
-            expectedversion = " File Version: 1.2.45";
-            Assert.AreEqual<string>(expectedversion, actualversion, " Validating version values with -v ");
+            for (int i = 0; i < strArr.Length; i++)
+            {
+                actualversion = objclsFuncExecution.funcexecution(strArr[i], "c:/test.txt");
+                if (actualversion.Contains("."))
+                {
+                    Console.Write("Test Scenario Pass");
+                }
+                else
+                {
+                    Console.Write("Test Scenario fail");
+                }
+
+            }
 
         }
         [TestMethod]
-        public void TestVersionSC2()
+        public void TestSize()
         {
-            ///Verifying --v version value
-            String actualversion, expectedversion;
+            string actualsize = null;
+            string[] strArr = { "-s", "--s", "/s", "--size" };
             clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualversion = objclsFuncExecution.funcexecution("--v", "c:/test.txt");
-            expectedversion = " File Version: 1.2.49";
-            Assert.AreEqual<string>(expectedversion, actualversion, "Validating version values with --v");
+            for (int i = 0; i < strArr.Length; i++)
+            {
+                actualsize = objclsFuncExecution.funcexecution(strArr[i], "c:/test.txt");
+                if (actualsize.Length < 18)
+                {
+                    Console.Write("Test Scenario Pass");
+                }
+                else
+                {
+                    Console.Write("Test Scenario fail");
+                }
 
-        }
-        [TestMethod]
-        public void TestVersionSC3()
-        {
-            ///Verifying /v version value
-            String actualversion, expectedversion;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualversion = objclsFuncExecution.funcexecution("/v", "c:/test.txt");
-            expectedversion = " File Version: 1.2.40";
-            Assert.AreEqual<string>(expectedversion, actualversion, "Validating version values with /v");
-
-        }
-        [TestMethod]
-        public void TestVersionSC4()
-        {
-            ///Verifying --version version value
-            String actualversion, expectedversion;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualversion = objclsFuncExecution.funcexecution("--version", "c:/test.txt");
-            expectedversion = " File Version: 1.2.40";
-            Assert.AreEqual<string>(expectedversion, actualversion, "Validating version values with --version");
-
-        }
-
-        [TestMethod]
-        public void TestSizeSc1()
-        {
-            ///Verifying -s size value
-            string actualsize, expectedsize;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualsize = objclsFuncExecution.funcexecution("-s", "c:/test.txt");
-            expectedsize = " File Version: 136102";
-            Assert.AreEqual<string>(expectedsize, actualsize, "Validating size values with -s");
-
-
-        }
-        [TestMethod]
-        public void TestSizeSc2()
-        {
-            ///Verifying --s size value
-            string actualsize, expectedsize;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualsize = objclsFuncExecution.funcexecution("--s", "c:/test.txt");
-            expectedsize = " File Version: 137102";
-            Assert.AreEqual<string>(expectedsize, actualsize, "Validating size values with --s");
-
-
-        }
-        [TestMethod]
-        public void TestSizeSc3()
-        {
-            ///Verifying /s size value
-            string actualsize, expectedsize;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualsize = objclsFuncExecution.funcexecution("/s", "c:/test.txt");
-            expectedsize = " File Version: 137102";
-            Assert.AreEqual<string>(expectedsize, actualsize, "Validating size values with /s");
-
-
-        }
-        [TestMethod]
-        public void TestSizeSc4()
-        {
-            ///Verifying --size size value
-            string actualsize, expectedsize;
-            clsFuncExecution objclsFuncExecution = new clsFuncExecution();
-            actualsize = objclsFuncExecution.funcexecution("--size", "c:/test.txt");
-            expectedsize = " File Version: 137102";
-            Assert.AreEqual<string>(expectedsize, actualsize, "Validating size values with --size");
-
-
+            }
         }
     }
 }
